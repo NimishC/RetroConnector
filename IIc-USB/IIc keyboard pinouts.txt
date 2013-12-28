@@ -18,8 +18,6 @@ Y0	ESC	1	2	3	4	6	5	7	8	9
 7							DEL	DN	LT	RT
 
 
-Matrix
-	J9
 
 Matrix
 	J9  Teensy

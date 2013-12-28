@@ -3,6 +3,8 @@ http://www.arduino.cc/playground/Code/Keypad
 
 Uses the PJRC Teensy++ 2.0 and Teensyduino libraries, specifically USB HID and Keyboard():
 http://www.pjrc.com/teensy/teensyduino.html
+
+Modified 20131228 NimishC: Adapted key map to Teensy 3.0
 */
 
 #include <Keypad.h>
@@ -68,28 +70,49 @@ Y0	ESC	1	2	3	4	6	5	7	8	9
 7							DEL	DN	LT	RT
 
 
+Keyboard matrix
+
+	X0	1	2	3	4	5	6	7	8	9
+Y0	ESC	1	2	3	4	6	5	7	8	9
+
+1	TAB	Q	W	E	R	Y	T	U	I	O
+
+2	A	D	S	H	F	G	J	K	;	L
+
+3	Z	X	C	V	B	N	M	<	>	?
+
+4							\	+	0	-
+
+5							~	P	[	]
+
+6							RET	UP	SPC	"
+
+7							DEL	DN	LT	RT
+
+
+
 Matrix
 	J9  Teensy
 
-X0	31	26
-1	24      4
-2	22      5
-3	8       14
-4	14      17
-5	6       13
-6	10      15
-7	1       3
-8	4       12
-9	2       11
+X0	31	8
+1	24      15
+2	22      16
+3	8       7
+4	14      20
+5	6       5
+6	10      22
+7	1       0
+8	4       3
+9	2       1
 
-Y0	12      16
-1	33      25
-2	18      7
-3	20      38
+Y0	12      21
+1	33      10
+2	18      18
+3	20      17
 4	3       2
-5	5       1
-6	7       0
-7	9       27
+5	5       4
+6	7       6
+7	9       23
 
 NC	13
 	17
@@ -97,11 +120,11 @@ NC	13
 
 GND	21      
 
-SFT	34      24
-CTL	32      23
-CMD     16      8    
-CMD	26      20
-CAPS	28      21
+SFT	34      12
+CTL	32      9
+CMD     16      19    
+CMD	26      14
+CAPS	28      8
 
 
 J9 pinout
@@ -141,42 +164,30 @@ J9 pinout
 34	SHIFT
 
 
+
+
 */
 
 byte rowPins[ROWS] = { // Y0 - Y9
-  16,25,7,38,2,1,0,27}; //connect to the row pinouts of the keypad
+  21,10,18,17,2,4,6,23}; //connect to the row pinouts of the keypad
 
 byte colPins[COLS] = { // X0 - X7
-  26,4,5,14,17,13,15,3,12,11 }; //connect to the column pinouts of the keypad
+  8,15,16,7,20,5,22,0,3,1 }; //connect to the column pinouts of the keypad
 
 Keypad KPD = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
-
-const int  SHIFTPin = 24;    // the pin that the shift key is attached to
-const int  CTRLPin = 23;    // the pin that the control key is attached to
-const int  APPLEPin1 = 43;    // the pin that the open-apple key is attached to
-const int  APPLEPin2 = 44;    // the pin that the closed-apple key is attached to
-
-const int CAPSPin = 21;
-// these pins are special in that they are dis/connected to ground, instead of to a row/col
-
-
+// the following pins are special in that they are dis/connected to ground, instead of to a row/col
 /*** 
-
 open/closed apple are grounded through resistors on the //c. need to detect voltage drop as analogread, not digital.
-
 must be on analog pin.
-
 ***/
-
-
-
+const int  SHIFTPin = 12;    // the pin that the shift key is attached to
+const int  CTRLPin = 9;    // the pin that the control key is attached to
+const int  APPLEPin1 = 19;    // the pin that the open-apple key is attached to
+const int  APPLEPin2 = 14;    // the pin that the closed-apple key is attached to
+const int CAPSPin = 8; // the caps lock pin
 
 char modifierKeys[4];
-
-
-
-
 
  #define KEY_CAPS_UNLOCK  0
 
@@ -279,17 +290,7 @@ FKEYS = CAPSState;
       modifierKeys[3] = 0;
       digitalWrite(APPLEPin2, HIGH);
     }
-                                     
 
-
-
-
-// to use the TILDE key as ALT/OPTION
-/*    modifierKeys[3] = 0;
-    if( KPD.isPressed(KEY_TILDE) ) {
-      modifierKeys[3] = MODIFIERKEY_ALT;
-    }
-*/
 
 // *** NOW USING CLOSED APPLE AS ALT/OPTION
 

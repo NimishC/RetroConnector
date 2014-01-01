@@ -12,12 +12,7 @@ Modified 20131228 NimishC: Adapted key map to Teensy 3.0
 
 
 /* 
-Declares the matrix rows/cols of the Apple IIe keyboard. 
-
-More information here:
-http://apple2.info/wiki/index.php?title=Pinouts#Apple_.2F.2Fe_Motherboard_keyboard_connector
-
-
+Declares the matrix rows/cols of the Apple IIc keyboard. 
 */
 
 const byte ROWS = 8; // rows
@@ -150,7 +145,7 @@ J9 pinout
 20	Y3
 21		GROUND ???
 22	X2
-23		GROUND ???
+23		5v
 24	X1
 25	POWER LED (5v)
 26	OPEN APPLE
@@ -178,14 +173,14 @@ Keypad KPD = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
 // the following pins are special in that they are dis/connected to ground, instead of to a row/col
 /*** 
-open/closed apple are grounded through resistors on the //c. need to detect voltage drop as analogread, not digital.
+open/closed apple are grounded through resistors on the //c. need to detect voltage drop as analoguread, not digital.
 must be on analog pin.
 ***/
 const int  SHIFTPin = 12;    // the pin that the shift key is attached to
 const int  CTRLPin = 9;    // the pin that the control key is attached to
 const int  APPLEPin1 = 19;    // the pin that the open-apple key is attached to
 const int  APPLEPin2 = 14;    // the pin that the closed-apple key is attached to
-const int CAPSPin = 8; // the caps lock pin
+const int CAPSPin = 13; // the caps lock pin
 
 char modifierKeys[4];
 
@@ -266,11 +261,8 @@ FKEYS = CAPSState;
       digitalWrite(CTRLPin, HIGH);
     }
 
-
-
    char OAPPLEState = analogRead(APPLEPin2);
    char CAPPLEState = analogRead(APPLEPin1);
-
 
 // *** NOW USING CLOSED APPLE AS ALT/OPTION
     if (OAPPLEState < 20) {
@@ -320,7 +312,8 @@ FKEYS = CAPSState;
                   if((KPD.key[0].kchar >= 0x1E) &&  (KPD.key[0].kchar <= 0x27)){
                     KPD.key[0].kchar += 0x1C;
 
-                 //   Serial.println( KPD.key[0].kchar, HEX );
+                    //for debugging
+                    //Serial.println( KPD.key[0].kchar, HEX );
 
                   }
                   

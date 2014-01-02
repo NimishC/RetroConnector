@@ -1,94 +1,68 @@
+J9 pin layout - keyboard connector facing you
+
+                  ______________
+              Y1 | 18        17 | Shift
+              X0 | 19        16 | CTRL
+           RESET | 20        15 | NC?
+         LEDGND? | 21        14 | Caps Lock
+             +5V | 22        13 | Closed Apple
+             NC? | 23        12 | X1
+             GND | 24        11 | X2
+         40/80SW | 25        10 | Y3
+             NC? | 26         9 | Y2
+          KBDSW [  27         8 | Open Apple
+             NC? | 28         7 | X4
+         DISKLED | 29         6 | Y0
+              Y7 | 30         5 | X6
+              Y6 | 31         4 | X3
+              Y5 | 32         3 | X5
+              Y4 | 33         2 | X8
+              X7 | 34         1 | X9
+                 |______________|
+
+
+
 Keyboard matrix
 
-	X0	1	2	3	4	5	6	7	8	9
-Y0	ESC	1	2	3	4	6	5	7	8	9
-
-1	TAB	Q	W	E	R	Y	T	U	I	O
-
-2	A	D	S	H	F	G	J	K	;	L
-
-3	Z	X	C	V	B	N	M	<	>	?
-
-4							\	+	0	-
-
-5							~	P	[	]
-
-6							RET	UP	SPC	"
-
-7							DEL	DN	LT	RT
-
-
-
-Matrix
-	J9  Teensy
-
-X0	31	8
-1	24      15
-2	22      16
-3	8       7
-4	14      20
-5	6       5
-6	10      22
-7	1       0
-8	4       3
-9	2       1
-
-Y0	12      21
-1	33      10
-2	18      18
-3	20      17
-4	3       2
-5	5       4
-6	7       6
-7	9       23
-
-NC	13
-	17
-	30
-
-GND	21      
-
-SFT	34      12
-CTL	32      9
-CMD     16      19    
-CMD	26      14
-CAPS	28      8
+    |	X0	1	2	3	4	5	6	7	8	9
+-------------------------------------------------------------------------------------
+Y0  |	ESC	1	2	3	4	6	5	7	8	9
+    |
+1   |	TAB	Q	W	E	R	Y	T	U	I	O
+    |
+2   |	A	D	S	H	F	G	J	K	;	L
+    |
+3   |	Z	X	C	V	B	N	M	<	>	?
+    |
+4   |							\	+	0	-
+    |
+5   |							~	P	[	]
+    |
+6   |							RET	UP	SPC	"
+    |
+7   |							DEL	DN	LT	RT
 
 
-J9 pinout
-1	X7
-2	X9
-3	Y4
-4	X8
-5	Y5
-6	X5
-7	Y6
-8	X3
-9	Y7
-10	X6
-11		DISK LED (5v)
-12	Y0
-13		NC
-14	X4
-15		KEYBOARD SW
-16	CLOSED APPLE
-17		NC
-18	Y2
-19		40/80 COL SWITCH
-20	Y3
-21		GROUND ???
-22	X2
-23		GROUND ???
-24	X1
-25	POWER LED (5v)
-26	OPEN APPLE
-27		LED GROUND ???
-28	CAPS LOCK
-29		RESET
-30		NC
-31	X0
-32	CONTROL
-33	Y1
-34	SHIFT
-
-
+J9 pin   Teensy pin
+1        1
+2        3
+3        5
+4        7
+5        22
+6        21
+7        20
+9        18
+10       17
+11       16
+12       15
+13       14
+14       13
+16       9
+17       12
+18       10
+19       8
+30       23
+31       6
+32       4
+33       2
+34       0

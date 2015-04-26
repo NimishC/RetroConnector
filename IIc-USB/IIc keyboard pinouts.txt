@@ -22,7 +22,7 @@ J9 pin layout - keyboard connector facing you
 
 
 
-Keyboard matrix
+Keyboard matrix QWERTY
 
     |	X0	1	2	3	4	5	6	7	8	9
 -------------------------------------------------------------------------------------
@@ -41,6 +41,29 @@ Y0  |	ESC	1	2	3	4	6	5	7	8	9
 6   |							RET	UP	SPC	"
     |
 7   |							DEL	DN	LT	RT
+
+
+
+Keyboard matrix DVORAK
+
+    |	X0	1	2	3	4	5	6	7	8	9
+-------------------------------------------------------------------------------------
+Y0  |	ESC	1	2	3	4	6	5	7	8	9
+    |
+1   |	TAB	"	<	>	P	F	Y	G	C	R
+    |
+2   |	A	E	O	D	U	I	H	T	S	N
+    |
+3   |	;	Q	J	K	X	B	M	W	V	Z
+    |
+4   |							\	]	0	[
+    |
+5   |							~	L	?	+
+    |
+6   |							RET	UP	SPC	-
+    |
+7   |							DEL	DN	LT	RT
+
 
 
 J9 pin   Teensy pin
